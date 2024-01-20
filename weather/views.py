@@ -9,6 +9,8 @@ from weatherdetector.settings import OPENWEATHERMAP_API_KEY
 def index(request):
     if request.method == 'POST':
         city = request.POST['city']
+        if city == '':
+            return redirect('index')
         if ' ' in city:
             city = city.replace(' ', '+')
         res = urllib.request.urlopen(f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHERMAP_API_KEY}').read()
