@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import json, os
 import urllib.request
 from weatherdetector.settings import OPENWEATHERMAP_API_KEY
@@ -26,4 +26,5 @@ def index(request):
     else:
         city = ''
         data = {}
+
     return render(request, 'index.html', {'city': city, 'data': data})
